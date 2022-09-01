@@ -42,25 +42,17 @@ var GroupModel = /*#__PURE__*/function () {
       });
       schema.plugin(_mongooseUniqueValidator["default"]);
 
-      _mongoose["default"].model('groups', schema); //Reverse populate with virtuals
+      _mongoose["default"].model('groups', schema); // //Reverse populate with virtuals
+      // schema.virtual('contactCount', {
+      //   ref: 'contacts', //The Model to use
+      //   localField: '_id', //Find in Model, where localField
+      //   foreignField: 'groupId', // is equal to foreignField
+      //   justOne: false,
+      //   count: true,
+      // });
+      // schema.set('toObject', { virtuals: true });
+      // schema.set('toJSON', { virtuals: true });
 
-
-      schema.virtual('contactCount', {
-        ref: 'contacts',
-        //The Model to use
-        localField: '_id',
-        //Find in Model, where localField
-        foreignField: 'groupId',
-        // is equal to foreignField
-        justOne: false,
-        count: true
-      });
-      schema.set('toObject', {
-        virtuals: true
-      });
-      schema.set('toJSON', {
-        virtuals: true
-      });
     }
   }, {
     key: "getInstance",

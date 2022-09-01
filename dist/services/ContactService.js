@@ -113,9 +113,6 @@ var ContactService = /*#__PURE__*/function (_Service) {
                 _context2.next = 3;
                 return this.model.find({
                   groupId: id
-                }).populate({
-                  path: 'groupId',
-                  select: 'groupName'
                 });
 
               case 3:
