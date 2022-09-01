@@ -30,9 +30,8 @@ class ContactService extends Service {
 
   async getContactBygroup(id) {
     try {
-      const data = await this.model
-        .find({ groupId: id })
-        .populate({ path: 'groupId', select: 'groupName' });
+      const data = await this.model.find({ groupId: id });
+      // .populate({ path: 'groupId', select: 'groupName' });
 
       return {
         error: false,

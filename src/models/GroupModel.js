@@ -18,16 +18,16 @@ class GroupModel {
     schema.plugin(uniqueValidator);
     mongoose.model('groups', schema);
 
-    //Reverse populate with virtuals
-    schema.virtual('contactCount', {
-      ref: 'contacts', //The Model to use
-      localField: '_id', //Find in Model, where localField
-      foreignField: 'groupId', // is equal to foreignField
-      justOne: false,
-      count: true,
-    });
-    schema.set('toObject', { virtuals: true });
-    schema.set('toJSON', { virtuals: true });
+    // //Reverse populate with virtuals
+    // schema.virtual('contactCount', {
+    //   ref: 'contacts', //The Model to use
+    //   localField: '_id', //Find in Model, where localField
+    //   foreignField: 'groupId', // is equal to foreignField
+    //   justOne: false,
+    //   count: true,
+    // });
+    // schema.set('toObject', { virtuals: true });
+    // schema.set('toJSON', { virtuals: true });
   }
 
   getInstance() {
