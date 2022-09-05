@@ -54,19 +54,35 @@ var GroupService = /*#__PURE__*/function (_Service) {
   _createClass(GroupService, [{
     key: "insertCsvByGroup",
     value: function () {
-      var _insertCsvByGroup = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(groupName) {
-        var items;
+      var _insertCsvByGroup = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(groupName, csvArray) {
+        var TotalContact, TotalPaid, TotalPending, TotalApproved, groupData, items;
         return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
                 _context.prev = 0;
-                _context.next = 3;
-                return this.model.create({
-                  groupName: groupName
-                });
+                TotalContact = csvArray.length;
+                TotalPaid = csvArray.filter(function (item) {
+                  return item.Status === 'Paid';
+                }).length;
+                TotalPending = csvArray.filter(function (item) {
+                  return item.Status === 'Pending';
+                }).length;
+                TotalApproved = csvArray.filter(function (item) {
+                  return item.Status === 'Approved';
+                }).length;
+                groupData = {
+                  groupName: groupName,
+                  totalContact: TotalContact,
+                  totalPending: TotalPending,
+                  totalPaid: TotalPaid,
+                  totalApproved: TotalApproved
+                };
+                console.log(groupData);
+                _context.next = 9;
+                return this.model.create(groupData);
 
-              case 3:
+              case 9:
                 items = _context.sent;
                 return _context.abrupt("return", {
                   error: false,
@@ -75,8 +91,8 @@ var GroupService = /*#__PURE__*/function (_Service) {
                   data: items
                 });
 
-              case 7:
-                _context.prev = 7;
+              case 13:
+                _context.prev = 13;
                 _context.t0 = _context["catch"](0);
                 return _context.abrupt("return", {
                   error: _context.t0.message,
@@ -84,15 +100,15 @@ var GroupService = /*#__PURE__*/function (_Service) {
                   data: null
                 });
 
-              case 10:
+              case 16:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, this, [[0, 7]]);
+        }, _callee, this, [[0, 13]]);
       }));
 
-      function insertCsvByGroup(_x) {
+      function insertCsvByGroup(_x, _x2) {
         return _insertCsvByGroup.apply(this, arguments);
       }
 

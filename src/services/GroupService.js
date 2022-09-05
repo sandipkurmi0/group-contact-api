@@ -7,9 +7,30 @@ class GroupService extends Service {
     this.groupInfo = this.groupInfo.bind(this);
   }
 
-  async insertCsvByGroup(groupName) {
+  async insertCsvByGroup(groupName, csvArray) {
     try {
-      const items = await this.model.create({ groupName });
+      const TotalContact = csvArray.length;
+
+      const TotalPaid = csvArray.filter((item) => item.Status === 'Paid')
+        .length;
+
+      const TotalPending = csvArray.filter((item) => item.Status === 'Pending')
+        .length;
+
+      const TotalApproved = csvArray.filter(
+        (item) => item.Status === 'Approved',
+      ).length;
+
+      const groupData = {
+        groupName: groupName,
+        totalContact: TotalContact,
+        totalPending: TotalPending,
+        totalPaid: TotalPaid,
+        totalApproved: TotalApproved,
+      };
+
+      console.log(groupData);
+      const items = await this.model.create(groupData);
 
       return {
         error: false,

@@ -8,7 +8,23 @@ class GroupModel {
       {
         groupName: {
           type: String,
-          required: [true, 'Please add a Groupname'],
+          // required: [true, 'Please add a Groupname'],
+        },
+        totalContact: {
+          type: Number,
+          default: 0,
+        },
+        totalPending: {
+          type: Number,
+          default: 0,
+        },
+        totalPaid: {
+          type: Number,
+          default: 0,
+        },
+        totalApproved: {
+          type: Number,
+          default: 0,
         },
       },
       {

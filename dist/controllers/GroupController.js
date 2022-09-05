@@ -75,17 +75,15 @@ var ContactController = /*#__PURE__*/function (_Controller) {
             switch (_context.prev = _context.next) {
               case 0:
                 _req$body = req.body, groupName = _req$body.groupName, csvArray = _req$body.csvArray;
-                console.log(groupName);
-                console.log(csvArray);
-                _context.next = 5;
-                return this.service.insertCsvByGroup(groupName);
+                _context.next = 3;
+                return this.service.insertCsvByGroup(groupName, csvArray);
 
-              case 5:
+              case 3:
                 response = _context.sent;
                 res.status(response.statusCode).send(response);
 
                 if (!response.data) {
-                  _context.next = 14;
+                  _context.next = 10;
                   break;
                 }
 
@@ -97,16 +95,15 @@ var ContactController = /*#__PURE__*/function (_Controller) {
                     status: item.Status,
                     groupId: response.data._id
                   };
-                });
-                console.log(allArrayData);
-                _context.next = 12;
+                }); // console.log(allArrayData);
+
+                _context.next = 9;
                 return this.contactService.insert(allArrayData);
 
-              case 12:
+              case 9:
                 allArrayDatares = _context.sent;
-                console.log(allArrayDatares);
 
-              case 14:
+              case 10:
               case "end":
                 return _context.stop();
             }

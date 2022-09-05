@@ -18,9 +18,7 @@ class ContactController extends Controller {
 
   async insertCsvByGroup(req, res) {
     const { groupName, csvArray } = req.body;
-    console.log(groupName);
-    console.log(csvArray);
-    const response = await this.service.insertCsvByGroup(groupName);
+    const response = await this.service.insertCsvByGroup(groupName, csvArray);
     res.status(response.statusCode).send(response);
 
     if (response.data) {
@@ -33,9 +31,8 @@ class ContactController extends Controller {
           groupId: response.data._id,
         };
       });
-      console.log(allArrayData);
+      // console.log(allArrayData);
       const allArrayDatares = await this.contactService.insert(allArrayData);
-      console.log(allArrayDatares);
     }
 
     // return res.status(response.statusCode).send(response);
@@ -43,10 +40,6 @@ class ContactController extends Controller {
 
   async groupInfo(req, res) {
     const response = await this.service.groupInfo(req.query);
-    // console.log('=====================');
-    // console.log(response);
-    // const contactArrayResponse = await this.contactService.getAll(req.query);
-    // console.log(contactArrayResponse);
     return res.status(response.statusCode).send(response);
   }
 }
